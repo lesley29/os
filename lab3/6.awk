@@ -1,12 +1,19 @@
-{ 
-	cnt[$2]++;
-	sum[$2] += $3;
-	relation[$1] = $2;
-	pid_avg[$1] = $3;
+BEGIN {
+	previoud_ppid = 0;
+	sum = 0;
+	cnt = 0;
+}
+{
+	if (previoud_ppid != $2){
+		print "Average_Sleeping_Children_of_ParentID="previoud_ppid" is "sum/cnt;
+		sum = 0;
+		cnt = 0;
+		previoud_ppid = $2;
+	}
+	cnt++;
+	sum += $3;
+	print "ProcessID="$1" : Parent_ProcessID="$2" : Average_Time="$3;
 }
 END {
-	for (pid in relation){
-		ppid = relation[pid]
-		print "ProcessID="pid" : Parent_ProcessID=!"ppid"! : Average_Time="pid_avg[pid]" : Average_Sleeping_Children_of_ParentID="ppid" is "sum[ppid]/cnt[ppid];
-	}
+	print "Average_Sleeping_Children_of_ParentID="previoud_ppid" is "sum/cnt;
 }
