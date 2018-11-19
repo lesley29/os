@@ -2,3 +2,5 @@
 *.lst
 *.xml
 *.txt
+lab5/backup/
+*.pid
