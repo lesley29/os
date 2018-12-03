@@ -4,14 +4,14 @@ val=1
 
 (tail -n 0 -f data.txt) | while : ; do
 	read line
-	case $line in
+	case "$line" in
 		QUIT )
 			echo $val
-			echo "exit"
+			echo "Goodbye!"
 			pkill -g 0
 			exit 0 
 		;;
-		'x' )
+		'*' )
 			op='x'
 		;;
 		'+' )

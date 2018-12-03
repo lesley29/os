@@ -1,4 +1,5 @@
 #!/bin/bash
+exec 2>/dev/null
 restore="/home/user/share/lab5/backup/restore"
 backup_root_dir="/home/user/share/lab5/backup"
 prefix="Backup"

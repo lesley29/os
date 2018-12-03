@@ -1,0 +1,1 @@
+robocopy /Z /min:2097152 С:\cd \\%computername%\temp
