@@ -3,8 +3,9 @@ setlocal enabledelayedexpansion
 set workdir=workdir
 
 ver > %workdir%\version.txt
-wmic OS GET FreePhysicalMemory, TotalVisibleMemorySize | more > %workdir%\memory.txt
-wmic LOGICALDISK GET DeviceId, VolumeName, Description, Size | more > %workdir%\disk.txt
+wmic OS GET FreePhysicalMemory,TotalVisibleMemorySize > %workdir%\memory.txt
+wmic DISKDRIVE GET DeviceId,Model,Size,Description > %workdir%\disk.txt
+
 if not exist %workdir%\test mkdir %workdir%\test
 copy /Y %workdir% %workdir%\test
 findstr ".*" *.* > %workdir%\content.txt

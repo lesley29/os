@@ -4,6 +4,10 @@ restore="/home/user/share/lab5/backup/restore"
 backup_root_dir="/home/user/share/lab5/backup"
 prefix="Backup"
 
+if [[ ! -d $restore ]]; then
+	mkdir $restore
+fi
+
 latest=$(ls $backup_root_dir | grep -E "^$prefix-[0-9]{4}-[0-9]{2}-[0-9]{2}$" | cut -d '-' -f 2-4 | sort -t '-' -k1 -k2 -k3 -r | head -n 1)
 if [[ -z $latest ]]; then
 	echo "Nothing to restore"
